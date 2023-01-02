@@ -60,6 +60,7 @@ fun MovieRow(movie: String, onTap: (String) -> Unit ) {
             .clickable {  },
         shape = RoundedCornerShape(corner = CornerSize(15.dp)),
         elevation = 5.dp
+
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
