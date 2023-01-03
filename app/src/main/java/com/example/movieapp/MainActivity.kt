@@ -51,13 +51,16 @@ fun MyApp(content: @Composable () -> Unit) {
 
 
 @Composable
-fun MovieRow(movie: String, onTap: (String) -> Unit ) {
+fun MovieRow(movie: String, onTap: (String) -> Unit) {
     Card(
         modifier = Modifier
             .padding(8.dp)
             .fillMaxWidth()
             .height(150.dp)
-            .clickable {  },
+            .clickable {
+                onTap(movie)
+            }
+        ,
         shape = RoundedCornerShape(corner = CornerSize(15.dp)),
         elevation = 5.dp
 
@@ -76,8 +79,10 @@ fun MovieRow(movie: String, onTap: (String) -> Unit ) {
                 ) {
                 Icon(Icons.Default.AccountBox, contentDescription = "image icon")
 
+
             }
-            Text(text = movie)
+            Text(text = movie , style = MaterialTheme.typography.h6)
+
         }
 
 

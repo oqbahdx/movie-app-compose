@@ -1,5 +1,6 @@
 package com.example.movieapp.screens
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,20 +34,24 @@ fun HomeScreen(navController: NavController) {
 fun MainContent(
     navController: NavController,
     moviesList: List<String> = listOf(
-        "Movie 1",
-        "Movie 2",
-        "Movie 3",
-        "Movie 4",
-        "Movie 5",
-        "Movie 6",
+        "Babylon",
+        "Amsterdam",
+        "Oppenheimer",
+        "The Northmen",
+        "The Woman King",
+        "Medieval",
+        "Hacksaw Ridge",
+        "12 Years a Slave",
+        "Tombstone",
+
     )
 ) {
     Column(modifier = Modifier.padding(12.dp)) {
         LazyColumn {
 
             items(items = moviesList) {
-                MovieRow(movie = it){
-                    navController.navigate(MovieScreen.DetailsScreen.name)
+                MovieRow(movie = it){movie->
+                    navController.navigate(route = MovieScreen.DetailsScreen.name+"/$movie")
                 }
             }
         }
