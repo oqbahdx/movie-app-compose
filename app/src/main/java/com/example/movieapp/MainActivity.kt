@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.movieapp.ui.theme.MovieAppTheme
 import androidx.compose.ui.platform.LocalContext
+import com.example.movieapp.models.Movie
 import com.example.movieapp.navigations.MovieNavigation
 
 class MainActivity : ComponentActivity() {
@@ -50,44 +51,6 @@ fun MyApp(content: @Composable () -> Unit) {
 }
 
 
-@Composable
-fun MovieRow(movie: String, onTap: (String) -> Unit) {
-    Card(
-        modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-            .height(150.dp)
-            .clickable {
-                onTap(movie)
-            }
-        ,
-        shape = RoundedCornerShape(corner = CornerSize(15.dp)),
-        elevation = 5.dp
-
-    ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start
-        ) {
-            Surface(
-                modifier = Modifier
-                    .padding(12.dp)
-                    .size(100.dp),
-                shape = RectangleShape,
-                elevation = 4.dp,
-
-                ) {
-                Icon(Icons.Default.AccountBox, contentDescription = "image icon")
-
-
-            }
-            Text(text = movie , style = MaterialTheme.typography.h6)
-
-        }
-
-
-    }
-}
 
 
 @Preview(showBackground = true)
