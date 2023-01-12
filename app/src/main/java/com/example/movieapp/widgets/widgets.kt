@@ -1,5 +1,6 @@
 package com.example.movieapp.widgets
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
@@ -11,7 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
+import coil.request.ImageRequest
+import coil.transform.CircleCropTransformation
 import com.example.movieapp.models.Movie
 
 @Composable
@@ -23,8 +30,7 @@ fun MovieRow(movie: Movie, onTap: (String) -> Unit) {
             .height(150.dp)
             .clickable {
                 onTap(movie.id)
-            }
-        ,
+            },
         shape = RoundedCornerShape(corner = CornerSize(15.dp)),
         elevation = 5.dp
 
@@ -41,11 +47,22 @@ fun MovieRow(movie: Movie, onTap: (String) -> Unit) {
                 elevation = 4.dp,
 
                 ) {
-                Icon(Icons.Default.AccountBox, contentDescription = "image icon")
+                Image(
 
+                    rememberAsyncImagePainter(
+                        movie.images[0],
+                        contentScale = ContentScale.FillHeight,
+                        transform = AsyncImagePainter.DefaultTransform
+                    ), contentDescription = "image poster",
+                    modifier = Modifier.fillMaxSize(),
+                )
 
             }
-            Text(text = movie.title , style = MaterialTheme.typography.h6)
+            Column {
+                Text(text = movie.title, style = MaterialTheme.typography.h6)
+                Text(text = "Director : ${movie.director}", style = MaterialTheme.typography.body1)
+                Text(text = "Released : ${movie.year}", style = MaterialTheme.typography.body1)
+            }
 
         }
 
